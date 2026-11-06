@@ -52,8 +52,19 @@ h3{font-size:17px;margin-bottom:6px}
 .stat .n{font-size:24px;font-weight:800;color:#fff}
 .stat .l{font-size:12px;color:var(--mut);margin-top:2px}
 .planned{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--gold);border:1px solid #4a3a1a;background:#1c1607;border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
-.bar{height:10px;background:#1a1a33;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:10px}
-.bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--gold));border-radius:999px;transition:width .6s ease}
+.btn.gold{background:linear-gradient(180deg,#f6cd77,#e9ab3c);color:#231a05}
+.btn.wide{display:block;width:100%;padding:14px 18px;font-size:17px}
+.mp{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:12px}
+.mp-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mp-top .l{color:var(--mut);font-size:14px}
+.mp-top .n{font-size:28px;font-weight:800;color:#fff}
+.mp-bar{position:relative;height:16px;background:#1a1a33;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:12px}
+.mp-fill{height:100%;width:0%;background:linear-gradient(90deg,#f6cd77,#e9ab3c);border-radius:999px;transition:width .6s ease}
+.mp-tick{position:absolute;top:0;bottom:0;width:2px;background:rgba(7,7,20,.55)}
+.mp-ticks{position:relative;height:18px;margin-top:4px;font-size:11px;color:var(--mut)}
+.mp-ticks span{position:absolute;transform:translateX(-50%)}
+.mp-sub{margin-top:8px;font-size:14px;color:var(--txt)}
+.mp-sub .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;margin-right:6px}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
 th{color:var(--mut);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
@@ -116,6 +127,7 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
         <span class="pill"><b>$0.11–$0.55</b> <span data-i18n="pillPrice">per paid mint</span></span>
         <span class="pill"><b data-i18n="pillTiers">5 tier artworks</b></span>
       </div>
+      <p style="margin-top:14px"><button class="btn gold wide" type="button" id="hero-mint-btn" data-i18n="heroMintBtn">🤖 Mint with your agent</button></p>
       <p style="margin-top:14px"><a class="btn" href="#mint" data-i18n="heroCta">See the mint plan</a> <a class="btn ghost" href="#pricing" data-i18n="heroCta2">Pricing tiers</a></p>
       <p class="note" style="margin-top:10px" data-i18n="heroNote">Mint is live now. Binance Agentic Wallet + .ai Agent ID only — your agent runs the mint, this page never asks for your keys. No Binance collaboration is claimed.</p>
     </div>
@@ -128,7 +140,13 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
       <div class="stat"><div class="n">1</div><div class="l" data-i18n="statFree">Free mint per wallet</div></div>
       <div class="stat"><div class="n" id="stat-minted">0 / 10,000</div><div class="l"><span data-i18n="statMinted">Minted</span> <span class="planned" data-i18n="badgeLive">LIVE</span></div></div>
     </div>
-    <div class="bar"><div class="bar-fill" id="mint-bar"></div></div>
+    <div class="mp">
+      <div class="mp-top"><span class="l" data-i18n="statMinted">Minted</span><span class="n" id="mp-count">0 / 10,000</span></div>
+      <div class="mp-bar"><div class="mp-fill" id="mint-bar"></div><span class="mp-tick" style="left:25%"></span><span class="mp-tick" style="left:50%"></span><span class="mp-tick" style="left:75%"></span></div>
+      <div class="mp-ticks"><span style="left:25%">25%</span><span style="left:50%">50%</span><span style="left:75%">75%</span></div>
+      <p class="mp-sub" id="mp-left">10,000 left · 0.00% minted</p>
+      <p class="mp-sub"><span class="dot"></span>BNB CHAIN · BLOCK <span id="mp-block">…</span></p>
+    </div>
     <p class="note" style="margin-top:8px" data-i18n="statNote">Mint is live now. The counter and bar above update live from the contract — refreshes every minute.</p>
   </section>
 

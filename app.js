@@ -29,6 +29,7 @@
       heroLede: 'NEKART is a 10,000-piece neon samurai collection on BNB Chain. Your Binance Agentic Wallet mints it for you — first mint free, then the price climbs with every mint in your wallet. Every tier artwork is shown openly — see the collection below.',
       pillAgents: 'Agents only', pillSupply: 'supply', pillPrice: 'per paid mint', pillTiers: '5 tier artworks',
       heroCta: 'See the mint plan', heroCta2: 'Pricing tiers',
+      heroMintBtn: '🤖 Mint with your agent',
       heroNote: 'Mint is live now. Binance Agentic Wallet + .ai Agent ID only — your agent runs the mint, this page never asks for your keys. No Binance collaboration is claimed.',
       statSupply: 'Total supply', statMax: 'Max per Agent ID wallet', statFree: 'Free mint per wallet', statMinted: 'Minted',
       statNote: 'Mint is live now. The counter and bar above update live from the contract — refreshes every minute.',
@@ -94,6 +95,7 @@
       heroLede: 'NEKARTはBNBチェーンのネオン侍コレクション10,000体です。Binance Agentic Walletがあなたの代わりにミントします。初回は無料、その後はウォレット内のミント数に応じて価格が上がります。すべてのティアアートワークは最初から公開されています。下のコレクションをご覧ください。',
       pillAgents: 'エージェント限定', pillSupply: '体', pillPrice: '有料ミント1回あたり', pillTiers: '5つのティアアート',
       heroCta: 'ミント計画を見る', heroCta2: '価格ティア',
+      heroMintBtn: '🤖 エージェントでミント',
       heroNote: 'ミントは現在受付中です。Binance Agentic Wallet + .ai Agent ID限定です。エージェントがミントを実行します。このページが秘密鍵を求めることはありません。Binanceとの提携は主張していません。',
       statSupply: '総供給量', statMax: 'Agent IDウォレットあたり最大', statFree: 'ウォレットあたり無料ミント', statMinted: 'ミント済み',
       statNote: 'ミントは開始しました。上のカウンターとバーはコントラクトからライブで更新されます（1分ごとに更新）。',
@@ -226,12 +228,15 @@
   $('q-minus').addEventListener('click', function () { if (qty > 1) { qty--; renderTotal(); } });
   $('q-plus').addEventListener('click', function () { if (qty < 30 - already) { qty++; renderTotal(); } });
 
-  // ---- Mint button: opens the agent prompt (mint runs via the agent) ----
-  $('mint-btn').addEventListener('click', function () {
+  // ---- Mint buttons: open the agent prompt (mint runs via the agent) ----
+  function openAgentPrompt() {
     $('mint-prompt').textContent = buildPrompt();
     $('mint-prompt-box').style.display = 'block';
     $('mint-prompt-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
+  }
+  $('mint-btn').addEventListener('click', openAgentPrompt);
+  var heroMintBtn = $('hero-mint-btn');
+  if (heroMintBtn) heroMintBtn.addEventListener('click', openAgentPrompt);
 
   // ---- Agent prompt (live template, mint open) ----
   function buildPrompt() {
@@ -240,11 +245,7 @@
     return 'Use my Binance Agentic Wallet on BSC (chain 56) to call mint(' + qty + ') on the NEKART contract 0x3fc442342a5289d10773aE585C6CB3Dc4A37254e. My wallet holds a .ai Agent ID and has already minted ' + already + ' (first mint free; then $0.11 / $0.28 / $0.55 by wallet count, pegged via Chainlink BNB/USD). Total for this mint: $' + (cents / 100).toFixed(2) + '. Simulate the transaction first, then execute it. Mint is OPEN — simulate first, then execute.';
   }
 
-  $('show-prompt-btn').addEventListener('click', function () {
-    $('mint-prompt').textContent = buildPrompt();
-    $('mint-prompt-box').style.display = 'block';
-    $('mint-prompt-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
+  $('show-prompt-btn').addEventListener('click', openAgentPrompt);
   $('copy-prompt').addEventListener('click', function () {
     var text = $('mint-prompt').textContent;
     function done(ok) { $('copy-prompt').textContent = ok ? (lang === 'ja' ? 'コピーしました ✓' : 'Copied ✓') : (lang === 'ja' ? 'コピーに失敗しました — テキストを手動で選択してください' : 'Copy failed — select the text manually'); }
@@ -271,6 +272,17 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_call', params: [{ to: to, data: data }, 'latest'] })
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (j.error) throw new Error(j.error.message || 'RPC error');
+      return j.result;
+    });
+  }
+
+  function ethBlockNumber(rpc) {
+    return fetch(rpc, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'eth_blockNumber', params: [] })
     }).then(function (r) { return r.json(); }).then(function (j) {
       if (j.error) throw new Error(j.error.message || 'RPC error');
       return j.result;
@@ -304,7 +316,7 @@
   var SEL_TOTALSUPPLY = '0x18160ddd'; // totalSupply()
   var mintedCount = 0; // latest on-chain totalSupply, for the Post on X draft
   function updateMinted() {
-    var el = $('stat-minted'), bar = $('mint-bar');
+    var el = $('stat-minted'), bar = $('mint-bar'), mpCount = $('mp-count'), mpLeft = $('mp-left'), mpBlock = $('mp-block');
     if (!el) return;
     var chain = Promise.reject(new Error('start'));
     RPCS.forEach(function (rpc) {
@@ -313,9 +325,26 @@
     chain.then(function (res) {
       var n = decodeUint(res);
       mintedCount = n;
-      el.textContent = n.toLocaleString('en-US') + ' / 10,000';
+      var countTxt = n.toLocaleString('en-US') + ' / 10,000';
+      el.textContent = countTxt;
+      if (mpCount) mpCount.textContent = countTxt;
       if (bar) bar.style.width = (n > 0 ? Math.max(n / 10000 * 100, 0.5) : 0) + '%';
+      if (mpLeft) {
+        var pct = (n / 10000 * 100).toFixed(2);
+        mpLeft.textContent = lang === 'ja'
+          ? '残り' + (10000 - n).toLocaleString('en-US') + ' · ' + pct + '% ミント済み'
+          : (10000 - n).toLocaleString('en-US') + ' left · ' + pct + '% minted';
+      }
     }).catch(function () { /* keep the last shown count */ });
+    if (mpBlock) {
+      var bchain = Promise.reject(new Error('start'));
+      RPCS.forEach(function (rpc) {
+        bchain = bchain.catch(function () { return ethBlockNumber(rpc); });
+      });
+      bchain.then(function (res) {
+        mpBlock.textContent = decodeUint(res).toLocaleString('en-US');
+      }).catch(function () { /* keep the last shown block */ });
+    }
   }
   // ---- Post on X draft always matches the live project state ----
   var postBtn = $('post-x-btn');
