@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEKART — Neon samurai for AI agents (Preview)</title>
+<meta name="description" content="NEKART: 10,000 neon samurai NFTs on BNB Chain. Agent-only mint, $ peg via Chainlink oracle, artwork shown openly. PREVIEW — mint disabled, contracts deployed, mint not open yet.">
+<meta property="og:title" content="NEKART — Neon samurai for AI agents (Preview)">
+<meta property="og:description" content="10,000 neon samurai. Mint #1 free, then $0.11 / $0.28 / $0.55, max 30 per Agent ID. PREVIEW — mint disabled.">
+<meta property="og:image" content="hero.jpg">
+<style>
+:root{--bg:#070714;--panel:#0e0e20;--panel2:#151530;--line:#2a2a4a;--txt:#f2eefc;--mut:#a9a7c4;--pink:#ff2e88;--pur:#a78bfa;--blu:#38bdf8;--gold:#e8c87a;--green:#4ade80;--red:#f87171}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55;-webkit-text-size-adjust:100%}
+a{color:var(--blu);text-decoration:none}
+img{max-width:100%;display:block}
+.banner{background:#831843;color:#ffe4f1;text-align:center;font-size:13px;font-weight:700;letter-spacing:.03em;padding:9px 12px}
+.banner b{color:#fff}
+header{position:sticky;top:0;z-index:20;background:rgba(7,7,20,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hwrap{max-width:960px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
+.logo{font-weight:800;letter-spacing:.12em;font-size:17px}
+.logo span{color:var(--pink)}
+.hwrap nav{margin-left:auto;display:flex;gap:12px;align-items:center}
+.hwrap nav a{color:var(--mut);font-size:13px}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.lang button{background:transparent;border:0;color:var(--mut);padding:7px 10px;font-weight:700;cursor:pointer;font-size:12px}
+.lang button.on{background:var(--pink);color:#fff}
+.btn{display:inline-block;background:var(--pink);color:#fff;font-weight:700;border:0;border-radius:10px;padding:10px 18px;font-size:15px;cursor:pointer}
+.btn.small{padding:8px 14px;font-size:13px}
+.btn:disabled{background:#3a3a55;color:#8a8aa5;cursor:not-allowed}
+.btn.ghost{background:transparent;border:1px solid var(--pink);color:var(--pink)}
+main{max-width:960px;margin:0 auto;padding:0 16px 40px}
+.hero{margin:18px 0 8px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--panel)}
+.hero img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 20%}
+.hero-txt{padding:20px}
+h1{font-size:30px;line-height:1.15;letter-spacing:-.01em}
+.tag{color:var(--pink);font-weight:700;margin-top:8px}
+.lede{color:var(--mut);margin-top:10px;max-width:60ch}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:12px;color:var(--mut)}
+.pill b{color:var(--txt)}
+section{margin-top:28px}
+h2{font-size:22px;margin-bottom:8px}
+h3{font-size:17px;margin-bottom:6px}
+.sub{color:var(--mut);margin-bottom:12px;max-width:66ch}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{text-align:center;padding:14px 6px}
+.stat .n{font-size:24px;font-weight:800;color:#fff}
+.stat .l{font-size:12px;color:var(--mut);margin-top:2px}
+.planned{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--gold);border:1px solid #4a3a1a;background:#1c1607;border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--mut);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+td b{color:#fff}
+.stepnum{width:30px;height:30px;border-radius:50%;background:var(--pink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:8px}
+.qty{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap}
+.qty button{width:44px;height:44px;font-size:22px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:#fff;cursor:pointer}
+.qty .qv{font-size:22px;font-weight:800;min-width:36px;text-align:center}
+.qty .ql{font-size:13px;color:var(--mut)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:0;color:var(--mut);padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.seg button.on{background:var(--pink);color:#fff}
+.total{font-size:19px;font-weight:800;margin:10px 0}
+.total small{display:block;font-size:13px;color:var(--mut);font-weight:400}
+.note{font-size:13px;color:var(--mut)}
+.note b{color:var(--txt)}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tier img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px}
+pre{white-space:pre-wrap;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px;margin-top:8px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700}
+details p{color:var(--mut);margin-top:8px}
+footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var(--mut);font-size:13px}
+@media (max-width:640px){
+  h1{font-size:26px}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .grid2,.grid3,.tiers{grid-template-columns:1fr}
+  .hwrap nav a{display:none}
+  .hero img{aspect-ratio:4/5}
+}
+</style>
+</head>
+<body>
+<div class="banner" data-i18n="banner">⚠ PREVIEW — mint is disabled. Contracts are deployed, mint not open yet. The spec below is now on-chain.</div>
+<header>
+  <div class="hwrap">
+    <div class="logo">NEK<span>ART</span></div>
+    <nav>
+      <a href="#pricing" data-i18n="navPricing">Pricing</a>
+      <a href="#token" data-i18n="navToken">Token</a>
+      <a href="#how" data-i18n="navHow">How to mint</a>
+      <a href="#faq" data-i18n="navFaq">FAQ</a>
+      <span class="lang" role="group" aria-label="Language">
+        <button type="button" id="lang-en" class="on">EN</button><button type="button" id="lang-ja">日本語</button>
+      </span>
+      <a class="btn small" href="#mint" data-i18n="navMint">Mint</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <img src="hero.jpg" data-i18n-alt="heroAlt" alt="NEKART artwork — pink-haired chibi samurai with a kitsune mask and katana in neon Tokyo, pagoda, torii gate and sakura under a full moon">
+    <div class="hero-txt">
+      <h1 data-i18n="heroH1">The neon samurai of Neo Tokyo.</h1>
+      <p class="tag" data-i18n="heroTag">Minted by agents, not by clicking.</p>
+      <p class="lede" data-i18n="heroLede">NEKART is a 10,000-piece neon samurai collection on BNB Chain. Your Binance Agentic Wallet mints it for you — first mint free, then the price climbs with every mint in your wallet. Every tier artwork is shown openly — see the collection below.</p>
+      <div class="pillrow">
+        <span class="pill"><b data-i18n="pillAgents">Agents only</b> · BNB Chain</span>
+        <span class="pill"><b>10,000</b> <span data-i18n="pillSupply">supply</span></span>
+        <span class="pill"><b>$0.11–$0.55</b> <span data-i18n="pillPrice">per paid mint</span></span>
+        <span class="pill"><b data-i18n="pillTiers">5 tier artworks</b></span>
+      </div>
+      <p style="margin-top:14px"><a class="btn" href="#mint" data-i18n="heroCta">See the mint plan</a> <a class="btn ghost" href="#pricing" data-i18n="heroCta2">Pricing tiers</a></p>
+      <p class="note" style="margin-top:10px" data-i18n="heroNote">Preview only. Binance Agentic Wallet + .ai Agent ID only — your agent runs the mint, this page never asks for your keys. No Binance collaboration is claimed.</p>
+    </div>
+  </div>
+
+  <section aria-label="Stats">
+    <div class="card grid4">
+      <div class="stat"><div class="n">10,000</div><div class="l"><span data-i18n="statSupply">Total supply</span></div></div>
+      <div class="stat"><div class="n">30</div><div class="l" data-i18n="statMax">Max per Agent ID wallet</div></div>
+      <div class="stat"><div class="n">1</div><div class="l" data-i18n="statFree">Free mint per wallet</div></div>
+      <div class="stat"><div class="n" id="stat-minted">0 / 10,000</div><div class="l"><span data-i18n="statMinted">Minted</span> <span class="planned" data-i18n="badgePreview">PREVIEW</span></div></div>
+    </div>
+    <p class="note" style="margin-top:8px" data-i18n="statNote">Contracts are deployed and mint is not open yet, so the counter above is the planned total at zero — it is not a live on-chain reading. Mint opening time: opening soon (TBA, shown in UTC when set).</p>
+  </section>
+
+  <section id="pricing">
+    <h2 data-i18n="pricingH2">Pricing — it climbs with your wallet</h2>
+    <p class="sub" data-i18n="pricingSub">The price depends on how many you have already minted in your wallet, not on the global supply. Pegged in $ via the Chainlink BNB/USD oracle at mint time — the BNB you pay moves with the BNB price, the $ price does not. Overpay is refunded in the same transaction.</p>
+    <div class="card" style="overflow-x:auto">
+      <table>
+        <thead><tr><th data-i18n="thMint">Your mint #</th><th data-i18n="thPrice">Price each</th><th data-i18n="thBnb">≈ BNB *</th></tr></thead>
+        <tbody>
+          <tr><td><b>#1</b></td><td><b data-i18n="free">FREE</b></td><td>0</td></tr>
+          <tr><td><b>#2 – #10</b></td><td><b>$0.11</b></td><td>≈ 0.00016</td></tr>
+          <tr><td><b>#11 – #20</b></td><td><b>$0.28</b></td><td>≈ 0.00040</td></tr>
+          <tr><td><b>#21 – #30</b></td><td><b>$0.55</b></td><td>≈ 0.00080</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:10px" data-i18n="pricingNote">* BNB estimates at $695/BNB — estimates only. The contract reads the live Chainlink BNB/USD price at mint time. A wallet minting all 30 pays $9.29 in total (1 free + 9 × $0.11 + 10 × $0.28 + 10 × $0.55), plus gas. Max 30 per Agent ID wallet, ever.</p>
+    </div>
+  </section>
+
+  <section id="token">
+    <h2 data-i18n="tokenH2">NEKA token</h2>
+    <p class="sub" data-i18n="tokenSub">The token below is deployed on-chain: total 2,000,000,000 NEKA, pool 1,160,000,000, treasury 840,000,000. Its full name is still pending — only the symbol NEKA is set.</p>
+    <div class="card grid2">
+      <div><h3>NEKA</h3><p class="note" data-i18n="tokenDesc">BEP-20 bonus token. Every <b>paid</b> mint accrues <b>120,000 NEKA</b> to the minter — free mints accrue nothing. Claim it any time from the token contract.</p><p class="note" style="margin-top:8px" data-i18n="tokenAddr">Contract: <b>0xa51CFb48d61f95d361fB1cc715c321B3bA79DEbe</b></p></div>
+      <div>
+        <table>
+          <tbody>
+            <tr><td data-i18n="tokenTotal">Total supply</td><td><b>2,000,000,000</b></td></tr>
+            <tr><td data-i18n="tokenPool">Bonus pool</td><td><b>1,160,000,000</b></td></tr>
+            <tr><td data-i18n="tokenTreasury">Treasury</td><td><b>840,000,000</b></td></tr>
+            <tr><td data-i18n="tokenMax">Max per wallet</td><td><b>3,480,000</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="note" style="margin-top:8px" data-i18n="tokenWarn">Note: the symbol NEKA was already used by the earlier NEKA NFT collection (333 supply, live since 2026-11-04). This new NEKA token is a separate, newly deployed contract — do not confuse the two.</p>
+  </section>
+
+  <section id="collection">
+    <h2 data-i18n="collH2">The collection</h2>
+    <p class="sub" data-i18n="collSub">Five tier designs, shown openly from the start. Which samurai your agent draws is decided on-chain at mint time, from the remaining pool.</p>
+    <div class="tiers">
+      <div class="card tier"><img src="tier-azure.jpg" data-i18n-alt="tier1Alt" alt="Azure Samurai — blue-haired chibi samurai with a blue kitsune mask and katana"><h3><span data-i18n="tierCommon">Common</span> · <span data-i18n="tier1Name">Azure Samurai</span></h3><p class="note" data-i18n="tier1Range">IDs 1–5,000 · 5,000 samurai</p></div>
+      <div class="card tier"><img src="tier-emerald.jpg" data-i18n-alt="tier2Alt" alt="Emerald Ronin — green-haired chibi samurai with a green kitsune mask and katana"><h3><span data-i18n="tierUncommon">Uncommon</span> · <span data-i18n="tier2Name">Emerald Ronin</span></h3><p class="note" data-i18n="tier2Range">IDs 5,001–7,500 · 2,500 samurai</p></div>
+      <div class="card tier"><img src="tier-crimson.jpg" data-i18n-alt="tier3Alt" alt="Crimson Shogun — red-haired chibi samurai with a red kitsune mask and flaming katana"><h3><span data-i18n="tierRare">Rare</span> · <span data-i18n="tier3Name">Crimson Shogun</span></h3><p class="note" data-i18n="tier3Range">IDs 7,501–9,000 · 1,500 samurai</p></div>
+      <div class="card tier"><img src="tier-golden.jpg" data-i18n-alt="tier4Alt" alt="Golden Emperor — golden-haired chibi samurai with a gold kitsune mask and katana"><h3><span data-i18n="tierEpic">Epic</span> · <span data-i18n="tier4Name">Golden Emperor</span></h3><p class="note" data-i18n="tier4Range">IDs 9,001–9,700 · 700 samurai</p></div>
+      <div class="card tier"><img src="hero.jpg" data-i18n-alt="tier5Alt" alt="Pink Sakura Samurai — pink-haired chibi samurai with a kitsune mask and katana"><h3><span data-i18n="tierLegendary">Legendary</span> · <span data-i18n="tier5Name">Pink Sakura Samurai</span></h3><p class="note" data-i18n="tier5Range">IDs 9,701–10,000 · 300 samurai</p></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2 data-i18n="howH2">Let your agent mint it.</h2>
+    <p class="sub" data-i18n="howSub">Minting is for Binance Agentic Wallets holding an Agent ID (.ai) only. The contract checks it on-chain. Regular wallets cannot mint.</p>
+    <div class="grid3">
+      <div class="card"><div class="stepnum">1</div><h3 data-i18n="step1H">Check your wallet</h3><p class="note" data-i18n="step1Txt">Paste your Agentic Wallet address. The page reads the chain to see if it holds an Agent ID.</p><p style="margin-top:10px"><input id="agent-addr" type="text" placeholder="0x…" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);color:#fff" data-i18n-aria="agentAddrAria" aria-label="Agentic Wallet address"> <button class="btn small" type="button" id="agent-check-btn" style="margin-top:8px" data-i18n="checkBtn">Check Agent ID</button></p><p class="note" id="agent-check-out" style="margin-top:8px"></p></div>
+      <div class="card"><div class="stepnum">2</div><h3 data-i18n="step2H">Hand the prompt to your agent</h3><p class="note" data-i18n="step2Txt">Your agent fetches the ready-made transaction and runs it with the Binance Agentic Wallet skill. No forms, no posts, no voucher.</p><p style="margin-top:10px"><button class="btn small" type="button" id="show-prompt-btn" data-i18n="showPrompt">Show agent prompt (preview)</button></p></div>
+      <div class="card"><div class="stepnum">3</div><h3 data-i18n="step3H">Receive your samurai</h3><p class="note" data-i18n="step3Txt">Your samurai is drawn at mint time and its artwork is shown right away.</p></div>
+    </div>
+    <div id="mint-prompt-box" style="display:none;margin-top:14px">
+      <div class="card">
+        <p class="note"><b data-i18n="promptTitle">Hand this prompt to your agent</b> <span data-i18n="promptTitle2">(Binance Agentic Wallet skill). Your agent simulates the transaction first, then executes it. This page never asks for your keys.</span></p>
+        <pre id="mint-prompt"></pre>
+        <p style="margin-top:10px"><button class="btn small" type="button" id="copy-prompt" data-i18n="copyPrompt">Copy prompt</button></p>
+        <p class="note" style="margin-top:8px" data-i18n="promptNote">Contract address: 0x3fc442342a5289d10773aE585C6CB3Dc4A37254e — mint is still closed. Do not send BNB until mint opens.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mint">
+    <h2 data-i18n="mintH2">Mint — preview only</h2>
+    <div class="card">
+      <p class="note" id="mint-status"><span data-i18n="mintChain">Chain:</span> <b>BNB Chain Mainnet (56)</b> · <span data-i18n="mintStandard">Standard:</span> <b>BEP-721</b> · <span data-i18n="mintContract">Contract:</span> <b data-i18n="noContract">0x3fc442342a5289d10773aE585C6CB3Dc4A37254e</b> · <span data-i18n="mintMint">Mint:</span> <b data-i18n="mintPreview">PREVIEW — disabled</b></p>
+      <div style="margin-top:14px">
+        <p class="note" data-i18n="calcAlready">Mints this wallet already has (preview calculator):</p>
+        <div class="qty">
+          <button type="button" id="a-minus" data-i18n-aria="aMinusAria" aria-label="Fewer already minted">−</button>
+          <span class="qv" id="a-val">0</span>
+          <button type="button" id="a-plus" data-i18n-aria="aPlusAria" aria-label="More already minted">+</button>
+          <span class="ql" data-i18n="calcAlreadyHint">0 = first mint is free</span>
+        </div>
+        <p class="note" data-i18n="calcQty">How many more to mint:</p>
+        <div class="qty">
+          <button type="button" id="q-minus" data-i18n-aria="qMinusAria" aria-label="Fewer">−</button>
+          <span class="qv" id="q-val">1</span>
+          <button type="button" id="q-plus" data-i18n-aria="qPlusAria" aria-label="More">+</button>
+          <span class="ql" id="q-hint">Quantity 1–30 · Max 30 per Agent ID wallet</span>
+        </div>
+      </div>
+      <div class="total" id="total-line">$0.00 total<small>First mint is free · network gas only.</small></div>
+      <p class="note" id="neka-line"></p>
+      <p style="margin-top:12px"><button class="btn" type="button" id="mint-btn" data-i18n="mintBtn">Mint — disabled in preview</button></p>
+      <p class="note" style="margin-top:10px" id="mint-notice"></p>
+      <p class="note" style="margin-top:6px" data-i18n="mintFoot">Free mint: <b>1 per Agent ID wallet</b>, token free, gas only. Paid mints: <b>$0.11 / $0.28 / $0.55</b> by wallet count. Buying paid first does not burn your free claim — the first mint is always the free one.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="rulesH2">Honest rules</h2>
+    <div class="card">
+      <p class="note" data-i18n="rulesTxt">• <b>10,000 samurai, never more</b> (supply locked on-chain).<br>
+      • <b>Agents only can mint:</b> the contract checks the SPACE ID Agent ID on-chain.<br>
+      • <b>Price is pegged in $:</b> the BNB amount is read from the Chainlink BNB/USD oracle at mint time; overpay is refunded in the same transaction.<br>
+      • <b>Artwork is shown openly:</b> each token shows its tier artwork from the moment it is minted.<br>
+      • <b>NEKA token:</b> +120,000 NEKA per paid mint, totals locked on-chain (2B total / 1.16B pool / 840M treasury).<br>
+      • Trade freely on marketplaces that list the collection. 5% creator royalty where the marketplace supports it.<br>
+      • NFTs are collectibles; prices can go to zero. Nothing on this page is financial advice.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2 data-i18n="faqH2">Questions</h2>
+    <details><summary data-i18n="faq1Q">I don't have an Agentic Wallet. Can I join?</summary><p data-i18n="faq1A">You cannot mint, but you can buy samurai on a marketplace once trading opens.</p></details>
+    <details><summary data-i18n="faq2Q">How do I get an Agent ID?</summary><p data-i18n="faq2A">Open the Binance Wallet app, set up an Agentic Wallet and claim your .ai Agent ID from the banner.</p></details>
+    <details><summary data-i18n="faq3Q">Why does the price go up?</summary><p data-i18n="faq3A">The price is per wallet count: your 1st mint is free, #2–10 are $0.11, #11–20 are $0.28, #21–30 are $0.55. Early minters pay less.</p></details>
+    <details><summary data-i18n="faq4Q">When does mint open?</summary><p data-i18n="faq4A">Opening soon — no date is set yet. When it is set, it will be shown in UTC on this page.</p></details>
+    <details><summary data-i18n="faq5Q">Is the NEKA token live?</summary><p data-i18n="faq5A">Yes — the token contract is deployed at 0xa51CFb48d61f95d361fB1cc715c321B3bA79DEbe with a 2,000,000,000 total supply. +120,000 NEKA accrues per paid mint once mint opens; claim from the token contract.</p></details>
+  </section>
+
+  <section>
+    <h2 data-i18n="supportH2">Support</h2>
+    <div class="card">
+      <p><b><span data-i18n="supportX">Official X:</span> <a href="https://x.com/nekartnft" target="_blank" rel="noopener">@nekartnft</a></b></p>
+      <p class="note" data-i18n="supportTxt">Follow the official account for mint updates. Only this handle is official. Note: this X account also posted the earlier NEKA collection (333 supply) — NEKART is a new, separate project.</p>
+      <p style="margin-top:12px"><a class="btn" href="https://x.com/nekartnft" target="_blank" rel="noopener" data-i18n="followX">Follow on X</a> <a class="btn ghost" href="https://x.com/intent/post?text=NEKART%20%E2%80%94%20neon%20samurai%20for%20AI%20agents%20on%20BNB%20Chain.%20First%20mint%20FREE%2C%20then%20%240.11%20%2F%20%240.28%20%2F%20%240.55%2C%20max%2030%20per%20Agent%20ID.%20Preview%3A%20https%3A%2F%2Fnekart.vercel.app%2F%20%40nekartnft" target="_blank" rel="noopener" data-i18n="postX">Post on X</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p><b data-i18n="footTitle">NEKART — Preview.</b> <span data-i18n="foot1">Neon samurai for AI agents.</span></p>
+    <p style="margin-top:6px" data-i18n="foot2">PREVIEW ONLY: contracts are deployed (NEKART 0x3fc442342a5289d10773aE585C6CB3Dc4A37254e, NEKA 0xa51CFb48d61f95d361fB1cc715c321B3bA79DEbe), mint is disabled, and Nekart.fun is not live yet. The preview lives at nekart.vercel.app. Supply 10,000, prices pegged in $ via Chainlink BNB/USD. NFTs are collectibles; prices can go to zero. Nothing on this page is financial advice.</p>
+    <p style="margin-top:6px" data-i18n="foot3">© 2026 NEKART. Artwork is original to this project. Piggy Agent is a separate project — only its agent-mint concept is followed, never its name, artwork, or contract.</p>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
