@@ -84,7 +84,7 @@
       supportTxt: 'Follow the official account for mint updates. Only this handle is official. Note: this X account also posted the earlier NEKA collection (333 supply) — NEKART is a new, separate project.',
       followX: 'Follow on X', postX: 'Post on X',
       foot1: 'Neon samurai for AI agents.',
-      foot2: 'Contracts are deployed (NEKART 0x3fc442342a5289d10773aE585C6CB3Dc4A37254e, NEKA 0xa51CFb48d61f95d361fB1cc715c321B3bA79DEbe), mint is LIVE. Live at nekart.vercel.app and nekart.fun. Supply 10,000, prices pegged in $ via Chainlink BNB/USD. NFTs are collectibles; prices can go to zero. Nothing on this page is financial advice.'
+      foot2: 'Contracts are deployed (NEKART 0x3fc442342a5289d10773aE585C6CB3Dc4A37254e, NEKA 0xa51CFb48d61f95d361fB1cc715c321B3bA79DEbe), mint is LIVE. Live at www.nekart.fun (also nekart.vercel.app). Supply 10,000, prices pegged in $ via Chainlink BNB/USD. NFTs are collectibles; prices can go to zero. Nothing on this page is financial advice.'
     },
     ja: {
       banner: '🎉 ミント開始 — ミントは現在受付中です。初回無料、その後0.11ドル / 0.28ドル / 0.55ドル。',
@@ -149,7 +149,7 @@
       supportTxt: 'ミントの最新情報は公式アカウントをフォローしてください。公式はこのハンドルのみです。注意：このXアカウントは以前のNEKAコレクション（333体）も投稿しています。NEKARTは新しい別のプロジェクトです。',
       followX: 'Xでフォロー', postX: 'Xに投稿',
       foot1: 'AIエージェントのためのネオン侍。',
-      foot2: 'コントラクトはデプロイ済み（NEKART 0x3fc442342a5289d10773aE585C6CB3Dc4A37254e、NEKA 0xa51CFb48d61f95d361fB1cc715c321B3bA79DEbe）、ミントは受付中です。nekart.vercel.appとnekart.funで公開中。供給量10,000体、価格はChainlink BNB/USDでドル建て。NFTはコレクティブルであり、価格がゼロになることもあります。このページの内容は投資アドバイスではありません。'
+      foot2: 'コントラクトはデプロイ済み（NEKART 0x3fc442342a5289d10773aE585C6CB3Dc4A37254e、NEKA 0xa51CFb48d61f95d361fB1cc715c321B3bA79DEbe）、ミントは受付中です。www.nekart.funで公開中（nekart.vercel.appでも公開中）。供給量10,000体、価格はChainlink BNB/USDでドル建て。NFTはコレクティブルであり、価格がゼロになることもあります。このページの内容は投資アドバイスではありません。'
     }
   };
 
