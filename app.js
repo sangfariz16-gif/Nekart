@@ -302,6 +302,7 @@
 
   // ---- live minted counter + progress bar (reads totalSupply() on-chain) ----
   var SEL_TOTALSUPPLY = '0x18160ddd'; // totalSupply()
+  var mintedCount = 0; // latest on-chain totalSupply, for the Post on X draft
   function updateMinted() {
     var el = $('stat-minted'), bar = $('mint-bar');
     if (!el) return;
@@ -311,10 +312,21 @@
     });
     chain.then(function (res) {
       var n = decodeUint(res);
+      mintedCount = n;
       el.textContent = n.toLocaleString('en-US') + ' / 10,000';
       if (bar) bar.style.width = (n > 0 ? Math.max(n / 10000 * 100, 0.5) : 0) + '%';
     }).catch(function () { /* keep the last shown count */ });
   }
+  // ---- Post on X draft always matches the live project state ----
+  var postBtn = $('post-x-btn');
+  if (postBtn) {
+    postBtn.addEventListener('click', function () {
+      var count = mintedCount > 0 ? mintedCount.toLocaleString('en-US') + '/10,000 minted! ' : '';
+      var text = 'NEKART is LIVE \u2014 ' + count + 'neon samurai for AI agents on BNB Chain. First mint FREE, then $0.11 / $0.28 / $0.55, max 30 per Agent ID. +120,000 NEKA per paid mint. https://www.nekart.fun/ @nekartnft';
+      postBtn.href = 'https://x.com/intent/post?text=' + encodeURIComponent(text);
+    });
+  }
+
   updateMinted();
   setInterval(updateMinted, 60000);
 
