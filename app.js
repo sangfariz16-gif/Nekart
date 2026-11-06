@@ -31,7 +31,7 @@
       heroCta: 'See the mint plan', heroCta2: 'Pricing tiers',
       heroNote: 'Mint is live now. Binance Agentic Wallet + .ai Agent ID only — your agent runs the mint, this page never asks for your keys. No Binance collaboration is claimed.',
       statSupply: 'Total supply', statMax: 'Max per Agent ID wallet', statFree: 'Free mint per wallet', statMinted: 'Minted',
-      statNote: 'Mint is live now. The counter above starts at 0 / 10,000 — the live minted count is on the contract (BscScan).',
+      statNote: 'Mint is live now. The counter and bar above update live from the contract — refreshes every minute.',
       pricingH2: 'Pricing — it climbs with your wallet',
       pricingSub: 'The price depends on how many you have already minted in your wallet, not on the global supply. Pegged in $ via the Chainlink BNB/USD oracle at mint time — the BNB you pay moves with the BNB price, the $ price does not. Overpay is refunded in the same transaction.',
       thMint: 'Your mint #', thPrice: 'Price each', thBnb: '≈ BNB *',
@@ -96,7 +96,7 @@
       heroCta: 'ミント計画を見る', heroCta2: '価格ティア',
       heroNote: 'ミントは現在受付中です。Binance Agentic Wallet + .ai Agent ID限定です。エージェントがミントを実行します。このページが秘密鍵を求めることはありません。Binanceとの提携は主張していません。',
       statSupply: '総供給量', statMax: 'Agent IDウォレットあたり最大', statFree: 'ウォレットあたり無料ミント', statMinted: 'ミント済み',
-      statNote: 'ミントは開始しました。上のカウンターは0 / 10,000から始まります。ライブのミント数はコントラクト（BscScan）で確認できます。',
+      statNote: 'ミントは開始しました。上のカウンターとバーはコントラクトからライブで更新されます（1分ごとに更新）。',
       pricingH2: '価格 — ウォレットとともに上がる',
       pricingSub: '価格は全体の供給量ではなく、あなたのウォレットがすでにミントした数で決まります。ミント時にChainlink BNB/USDオラクルでドル建てに換算します。BNBでの支払額はBNB価格とともに動きますが、ドル価格は変わりません。過払いは同じトランザクションで返金されます。',
       thMint: 'あなたのミント番号', thPrice: '1回あたりの価格', thBnb: 'BNB換算 *',
@@ -299,6 +299,24 @@
       out.textContent = lang === 'ja' ? 'チェーンを読み取れませんでした — もう一度お試しください。' : 'Could not read the chain right now — please try again.';
     });
   });
+
+  // ---- live minted counter + progress bar (reads totalSupply() on-chain) ----
+  var SEL_TOTALSUPPLY = '0x18160ddd'; // totalSupply()
+  function updateMinted() {
+    var el = $('stat-minted'), bar = $('mint-bar');
+    if (!el) return;
+    var chain = Promise.reject(new Error('start'));
+    RPCS.forEach(function (rpc) {
+      chain = chain.catch(function () { return ethCall(rpc, NFT, SEL_TOTALSUPPLY); });
+    });
+    chain.then(function (res) {
+      var n = decodeUint(res);
+      el.textContent = n.toLocaleString('en-US') + ' / 10,000';
+      if (bar) bar.style.width = (n > 0 ? Math.max(n / 10000 * 100, 0.5) : 0) + '%';
+    }).catch(function () { /* keep the last shown count */ });
+  }
+  updateMinted();
+  setInterval(updateMinted, 60000);
 
   renderTotal();
 })();

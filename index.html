@@ -52,6 +52,8 @@ h3{font-size:17px;margin-bottom:6px}
 .stat .n{font-size:24px;font-weight:800;color:#fff}
 .stat .l{font-size:12px;color:var(--mut);margin-top:2px}
 .planned{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--gold);border:1px solid #4a3a1a;background:#1c1607;border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+.bar{height:10px;background:#1a1a33;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:10px}
+.bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--gold));border-radius:999px;transition:width .6s ease}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
 th{color:var(--mut);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
@@ -126,7 +128,8 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
       <div class="stat"><div class="n">1</div><div class="l" data-i18n="statFree">Free mint per wallet</div></div>
       <div class="stat"><div class="n" id="stat-minted">0 / 10,000</div><div class="l"><span data-i18n="statMinted">Minted</span> <span class="planned" data-i18n="badgeLive">LIVE</span></div></div>
     </div>
-    <p class="note" style="margin-top:8px" data-i18n="statNote">Mint is live now. The counter above starts at 0 / 10,000 — the live minted count is on the contract (BscScan).</p>
+    <div class="bar"><div class="bar-fill" id="mint-bar"></div></div>
+    <p class="note" style="margin-top:8px" data-i18n="statNote">Mint is live now. The counter and bar above update live from the contract — refreshes every minute.</p>
   </section>
 
   <section id="pricing">
