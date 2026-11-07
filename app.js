@@ -316,8 +316,7 @@
   var SEL_TOTALSUPPLY = '0x18160ddd'; // totalSupply()
   var mintedCount = 0; // latest on-chain totalSupply, for the Post on X draft
   function updateMinted() {
-    var el = $('stat-minted'), bar = $('mint-bar'), mpCount = $('mp-count'), mpLeft = $('mp-left'), mpBlock = $('mp-block');
-    if (!el) return;
+    var bar = $('mint-bar'), mpCount = $('mp-count'), mpLeft = $('mp-left'), mpBlock = $('mp-block');
     var chain = Promise.reject(new Error('start'));
     RPCS.forEach(function (rpc) {
       chain = chain.catch(function () { return ethCall(rpc, NFT, SEL_TOTALSUPPLY); });
@@ -326,7 +325,6 @@
       var n = decodeUint(res);
       mintedCount = n;
       var countTxt = n.toLocaleString('en-US') + ' / 10,000';
-      el.textContent = countTxt;
       if (mpCount) mpCount.textContent = countTxt;
       if (bar) bar.style.width = (n > 0 ? Math.max(n / 10000 * 100, 0.5) : 0) + '%';
       if (mpLeft) {
