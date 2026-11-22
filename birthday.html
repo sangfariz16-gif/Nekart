@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Selamat Ulang Tahun, Ines! — NEKART</title>
-<meta name="description" content="Selamat ulang tahun untuk Ines (@inesss725_) — dari @_nekart_. Hai kamu, Happy Birthday, semoga sehat dan bahagia selalu.">
-<meta property="og:title" content="Selamat Ulang Tahun, Ines! — NEKART">
+<title>Selamat Ulang Tahun, Risma Ineszz Ravisha Zhufairah Queennisaa Kheren Alma Putri Mardiana! — NEKART</title>
+<meta name="description" content="Selamat ulang tahun untuk Risma Ineszz Ravisha Zhufairah Queennisaa Kheren Alma Putri Mardiana (@inesss725_) — dari @_nekart_. Hai kamu, Happy Birthday, semoga sehat dan bahagia selalu.">
+<meta property="og:title" content="Selamat Ulang Tahun, Risma Ineszz Ravisha Zhufairah Queennisaa Kheren Alma Putri Mardiana! — NEKART">
 <meta property="og:description" content="Hai Kamu.. Happy Birthday ♡ Semoga sehat dan bahagia selalu. Terima kasih telah sabar menghadapiku. Aku bersyukur punya kamu. I LOVE YOU.">
 <meta property="og:image" content="birthday/ines-2.jpg">
 <style>
@@ -85,6 +85,7 @@ video{width:100%;border-radius:14px;border:1px solid var(--line);background:#000
 #petals{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
 .petal{position:absolute;top:-24px;font-size:18px;animation:fall linear infinite;opacity:.9}
 @keyframes fall{to{transform:translateY(105vh) rotate(340deg)}}
+.music-float{position:fixed;right:14px;bottom:14px;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.5)}
 footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var(--mut);font-size:13px;text-align:center}
 @media (max-width:640px){
   h1{font-size:27px}
@@ -98,6 +99,7 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
 </head>
 <body>
 <div id="petals" aria-hidden="true"></div>
+<button class="btn gold music-float" type="button" id="music-float" aria-label="Putar atau jeda musik">🎵 Musik</button>
 <header>
   <div class="hwrap">
     <div class="logo">NEK<span>ART</span> 🎂</div>
@@ -114,7 +116,7 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
     <img src="birthday/ines-2.jpg" alt="Ines — yang berulang tahun hari ini">
     <div class="hero-txt">
       <p class="eyebrow">🎉 NEKART • Happy Birthday • お誕生日おめでとう</p>
-      <h1><span data-i18n="h1a">Selamat Ulang Tahun,</span><br><span class="name" id="hero-name">Ines</span>!</h1>
+      <h1><span data-i18n="h1a">Selamat Ulang Tahun,</span><br><span class="name" id="hero-name" style="font-size:26px">Risma Ineszz Ravisha Zhufairah Queennisaa Kheren Alma Putri Mardiana</span>!</h1>
       <p class="tag">Hai Kamu.. — Happy Birthday ♡</p>
       <p class="lede" data-i18n="lede">Satu tahun lagi, satu level lagi. Semoga tahun ini seberani Azure, seteguh Emerald, seberapi Crimson, dan secemerlang Golden — dan seindah Sakura di hari istimewa ini.</p>
       <div class="pillrow">
@@ -122,19 +124,11 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
         <span class="pill">⚔️ <b>10,000 samurai</b></span>
         <span class="pill">🎂 <b data-i18n="pill3">Buat permohonanmu</b></span>
       </div>
-      <p class="note" style="margin-top:14px" data-i18n="namesLabel">Untuk semua namamu — ketuk salah satu:</p>
-      <div class="chiprow" id="name-chips">
-        <button class="chip" type="button" data-name="Risma">Risma</button>
-        <button class="chip on" type="button" data-name="Ines">Ineszz</button>
-        <button class="chip" type="button" data-name="Ravisha">Ravisha</button>
-        <button class="chip" type="button" data-name="Zhufairah">Zhufairah</button>
-        <button class="chip" type="button" data-name="Queennisaa">Queennisaa</button>
-        <button class="chip" type="button" data-name="Kheren">Kheren</button>
-        <button class="chip" type="button" data-name="Alma Putri">Alma Putri</button>
-        <button class="chip" type="button" data-name="Mardiana">Mardiana</button>
-      </div>
+      <p class="note" style="margin-top:14px">Nama lengkapnya:</p>
+      <p style="margin-top:6px;font-weight:800;color:var(--gold);font-size:17px;line-height:1.4">Risma Ineszz Ravisha Zhufairah Queennisaa Kheren Alma Putri Mardiana</p>
+      <p class="note" style="margin-top:4px">Panggilan: Ines • @inesss725_</p>
       <div class="music-bar">
-        <button class="btn gold" type="button" id="music-btn">▶ Putar Backsound</button>
+        <button class="btn gold" type="button" id="music-btn">🎵 Putar Musik Ulang Tahun</button>
         <span class="note" data-i18n="musicNote">Backsound dari video yang kamu kirim 🎵</span>
       </div>
       <audio id="bg-music" loop preload="metadata" src="birthday/birthday-backsound.mp3"></audio>
@@ -249,27 +243,20 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
 <script>
 (function(){
   var params = new URLSearchParams(location.search);
+  var FULL_NAME = 'Risma Ineszz Ravisha Zhufairah Queennisaa Kheren Alma Putri Mardiana';
   var nameEl = document.getElementById('hero-name');
-  function cleanName(v){ v = (v||'').trim().replace(/[<>]/g,''); return v ? v.slice(0,30) : 'Ines'; }
+  function cleanName(v){ v = (v||'').trim().replace(/[<>]/g,''); return v ? v.slice(0,100) : FULL_NAME; }
   function setName(v){
     var n = cleanName(v);
     nameEl.textContent = n;
-    document.querySelectorAll('#name-chips .chip').forEach(function(c){
-      c.classList.toggle('on', c.getAttribute('data-name') === n || (n === 'Ines' && c.getAttribute('data-name') === 'Ines'));
-    });
     updateShare(n);
-    var url = new URL(location.href);
-    if(n !== 'Ines'){ url.searchParams.set('name', n); } else { url.searchParams.delete('name'); }
-    history.replaceState(null,'',url.toString());
+    document.title = 'Selamat Ulang Tahun, ' + n + '! — NEKART';
   }
   function updateShare(n){
     var text = 'Selamat Ulang Tahun, ' + n + '! 🎂🌸 Hai Kamu.. Happy Birthday ♡ Semoga sehat dan bahagia selalu — ' + location.href;
     document.getElementById('share-x').href = 'https://x.com/intent/post?text=' + encodeURIComponent(text);
     document.getElementById('share-wa').href = 'https://wa.me/?text=' + encodeURIComponent(text);
   }
-  document.querySelectorAll('#name-chips .chip').forEach(function(c){
-    c.addEventListener('click', function(){ setName(c.getAttribute('data-name')); });
-  });
   document.getElementById('copy-link').addEventListener('click', function(){
     var btn = this;
     var done = function(){ btn.textContent = '✅ Link disalin!'; setTimeout(function(){ btn.textContent = '🔗 Salin Link'; }, 2000); };
@@ -280,9 +267,24 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
   // Backsound — audio dari video, loop, tombol play/pause (autoplay diblokir browser, jadi perlu ketuk)
   var music = document.getElementById('bg-music');
   var musicBtn = document.getElementById('music-btn');
-  musicBtn.addEventListener('click', function(){
-    if(music.paused){ music.play(); musicBtn.textContent = '⏸ Jeda Backsound'; }
-    else { music.pause(); musicBtn.textContent = '▶ Putar Backsound'; }
+  var musicFloat = document.getElementById('music-float');
+  function syncMusicBtn(){
+    var playing = !music.paused;
+    musicBtn.textContent = playing ? '⏸ Jeda Musik' : '🎵 Putar Musik Ulang Tahun';
+    if(musicFloat) musicFloat.textContent = playing ? '⏸ Jeda Musik' : '🎵 Musik';
+  }
+  function toggleMusic(){
+    if(music.paused){ music.play().then(syncMusicBtn, function(){}); }
+    else { music.pause(); syncMusicBtn(); }
+  }
+  musicBtn.addEventListener('click', toggleMusic);
+  if(musicFloat) musicFloat.addEventListener('click', toggleMusic);
+  music.addEventListener('play', syncMusicBtn);
+  music.addEventListener('pause', syncMusicBtn);
+  // Ketukan pertama di mana saja di halaman mencoba memutar musik (browser memblokir autoplay tanpa interaksi)
+  document.addEventListener('click', function once(){
+    if(music.paused){ music.play().then(syncMusicBtn, function(){}); }
+    document.removeEventListener('click', once);
   });
 
   // Kartu ucapan — isi persis dari video, 6 lembar
@@ -385,7 +387,7 @@ footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0;color:var
   document.getElementById('lang-en').addEventListener('click', function(){ setLang('en'); });
   document.getElementById('lang-ja').addEventListener('click', function(){ setLang('ja'); });
 
-  setName(params.get('name') || 'Ines');
+  setName(params.get('name') || FULL_NAME);
 })();
 </script>
 </body>
